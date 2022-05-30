@@ -1,0 +1,35 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="registrarUsuario(f)" fxLayoutGap="10px">
+        <mat-form-field>
+            <mat-label>Nombre:</mat-label>
+            <input type="text" name="nombre" placeholder="Ingrese el nombre" ngModel required matInput />
+            <mat-error>Debe ingresar el nombre</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Paterno:</mat-label>
+            <input type="text" name="paterno" placeholder="Ingrese el paterno" ngModel required matInput />
+            <mat-error>Debe ingresar el paterno</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Username:</mat-label>
+            <input type="text" name="username" placeholder="Ingrese el usuario" ngModel required matInput />
+            <mat-error>Debe ingresar el usuario</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Ingrese email</mat-label>
+            <input type="email" matInput placeholder="Email" ngModel name="email" email required #eIn="ngModel" />
+            <mat-error *ngIf="eIn.hasError('required')">No debe estar vacio</mat-error>
+            <mat-error *ngIf="!eIn.hasError('required')">Email invalido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Minimo debe ser de 6 caracteres">
+            <mat-label>Ingrese Password</mat-label>
+            <input type="password" matInput placeholder="Password" ngModel name="password" minlength="7" />
+            <mat-error>El password debe tener mas de 6 caracteres</mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Guardar</button>
+    </form>
+</section>

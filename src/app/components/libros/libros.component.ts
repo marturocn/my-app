@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LibrosService } from '../services/libros.service';
+import { LibrosService } from '../../services/libros.service';
 import { Subscription } from 'rxjs';
 
 @Component({

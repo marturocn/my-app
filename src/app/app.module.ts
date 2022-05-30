@@ -4,16 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsuarioComponent } from './ejemplo/usuario.component';
-import { InicioComponent } from './incio.component';
-import { LibroComponent } from './libro/libro.component';
-import { LibrosComponent } from './libros/libros.component';
+import { UsuarioComponent } from './components/ejemplo/usuario.component';
+import { InicioComponent } from './components/incio.component';
+import { LibroComponent } from './components/libro/libro.component';
+import { LibrosComponent } from './components/libros/libros.component';
 import { LibrosService } from './services/libros.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { RegistrarComponent } from './seguridad/registrar/registrar.component';
-import { LoginComponent } from './seguridad/login/login.component';
+import { RegistrarComponent } from './components/seguridad/registrar/registrar.component';
+import { LoginComponent } from './components/seguridad/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BarraComponent } from './components/navegacion/barra/barra.component';
+import { MenuListaComponent } from './components/navegacion/menu-lista/menu-lista.component';
+import { SeguridadService } from './services/seguridad.service';
+import { BooksComponent } from './components/books/books.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LibroComponent,
     InicioComponent,
     RegistrarComponent,
-    LoginComponent
+    LoginComponent,
+    BarraComponent,
+    MenuListaComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule
   ],
   providers: [
-    LibrosService
+    LibrosService,
+    SeguridadService
   ],
   bootstrap: [AppComponent]
 })
