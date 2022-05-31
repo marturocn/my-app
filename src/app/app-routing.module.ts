@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BooksComponent } from './components/books/books.component';
 import { InicioComponent } from './components/incio.component';
 import { LibrosComponent } from './components/libros/libros.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: '', component: InicioComponent, canActivate: [SeguridadGuard]},
   { path: 'libros', component: LibrosComponent },
   { path: 'registrar', component: RegistrarComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'books', component: BooksComponent }
 ];
 
 @NgModule({

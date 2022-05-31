@@ -18,6 +18,8 @@ import { BarraComponent } from './components/navegacion/barra/barra.component';
 import { MenuListaComponent } from './components/navegacion/menu-lista/menu-lista.component';
 import { SeguridadService } from './services/seguridad.service';
 import { BooksComponent } from './components/books/books.component';
+import { BooksService } from './services/books.service';
+import { AddBookComponent } from './components/books/add-book/add-book.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { BooksComponent } from './components/books/books.component';
     LoginComponent,
     BarraComponent,
     MenuListaComponent,
-    BooksComponent
+    BooksComponent,
+    AddBookComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +45,10 @@ import { BooksComponent } from './components/books/books.component';
   ],
   providers: [
     LibrosService,
-    SeguridadService
+    SeguridadService,
+    BooksService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddBookComponent]
 })
 export class AppModule { }
