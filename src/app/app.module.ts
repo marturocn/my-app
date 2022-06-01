@@ -20,6 +20,8 @@ import { SeguridadService } from './services/seguridad.service';
 import { BooksComponent } from './components/books/books.component';
 import { BooksService } from './services/books.service';
 import { AddBookComponent } from './components/books/add-book/add-book.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { AutoresComponent } from './components/autores/autores.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { AddBookComponent } from './components/books/add-book/add-book.component
     BarraComponent,
     MenuListaComponent,
     BooksComponent,
-    AddBookComponent
+    AddBookComponent,
+    AutoresComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,11 @@ import { AddBookComponent } from './components/books/add-book/add-book.component
   providers: [
     LibrosService,
     SeguridadService,
-    BooksService
+    BooksService,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'es-ES'
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddBookComponent]
