@@ -1,22 +1,30 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { MatOption } from "@angular/material/core";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSelectChange } from "@angular/material/select";
+import { Autor } from "src/app/models/autor.model";
+import { AutoresServices } from "src/app/services/autores.service";
 import { BooksService } from "src/app/services/books.service";
 
 @Component({
   selector: 'app-add-book',
   templateUrl: 'add-book.component.html'
 })
-export class AddBookComponent {
+export class AddBookComponent implements OnInit {
   selectAutor: string = "";
   selectAutorText: string = "";
   fechaPublicacion: string = "";
   @ViewChild(MatDatepicker) picker!: MatDatepicker<Date>;
 
-  constructor(private booksService: BooksService, private dialogRef: MatDialog) {}
+  autores: Autor[] = [];
+
+  constructor(private booksService: BooksService, private dialogRef: MatDialog, private autoresService: AutoresServices) {}
+
+  ngOnInit(): void {
+    this.autores = this.autoresService.obtenerAutores();
+  }
 
   guardarLibro(f: NgForm) {
     if (f.valid) {

@@ -25,9 +25,7 @@
           <mat-form-field style="width: 100%;">
             <mat-label>Seleccione autor</mat-label>
             <mat-select [(ngModel)]="selectAutor" name="autor" (selectionChange)="selected($event)">
-              <mat-option value="1">Vaxi Drez</mat-option>
-              <mat-option value="2">Nestor Arcila</mat-option>
-              <mat-option value="3">John Ortiz</mat-option>
+              <mat-option *ngFor="let autr of autores" value="autr.autorId">{{ autr.nombre + ' ' + autr.apellido }}</mat-option>
             </mat-select>
           </mat-form-field>
 
