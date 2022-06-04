@@ -18,10 +18,10 @@ import { BarraComponent } from './components/navegacion/barra/barra.component';
 import { MenuListaComponent } from './components/navegacion/menu-lista/menu-lista.component';
 import { SeguridadService } from './services/seguridad.service';
 import { BooksComponent } from './components/books/books.component';
-import { BooksService } from './services/books.service';
 import { AddBookComponent } from './components/books/add-book/add-book.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AutoresComponent } from './components/autores/autores.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,12 +44,10 @@ import { AutoresComponent } from './components/autores/autores.component';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [
-    LibrosService,
-    SeguridadService,
-    BooksService,
     {
       provide: MAT_DATE_LOCALE,
       useValue: 'es-ES'

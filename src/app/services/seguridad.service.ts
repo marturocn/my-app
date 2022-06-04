@@ -4,7 +4,9 @@ import { Subject } from "rxjs";
 import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SeguridadService {
     // https://bobbyhadz.com/blog/typescript-interface-empty-object
     private user = {} as Usuario;

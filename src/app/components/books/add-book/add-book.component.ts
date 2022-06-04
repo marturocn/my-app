@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { MatOption } from "@angular/material/core";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSelectChange } from "@angular/material/select";
+import { Subscription } from "rxjs";
 import { Autor } from "src/app/models/autor.model";
 import { AutoresServices } from "src/app/services/autores.service";
 import { BooksService } from "src/app/services/books.service";
@@ -12,7 +13,7 @@ import { BooksService } from "src/app/services/books.service";
   selector: 'app-add-book',
   templateUrl: 'add-book.component.html'
 })
-export class AddBookComponent implements OnInit {
+export class AddBookComponent implements OnInit, OnDestroy {
   selectAutor: string = "";
   selectAutorText: string = "";
   fechaPublicacion: string = "";
@@ -20,10 +21,21 @@ export class AddBookComponent implements OnInit {
 
   autores: Autor[] = [];
 
-  constructor(private booksService: BooksService, private dialogRef: MatDialog, private autoresService: AutoresServices) {}
+  autorSubscription!: Subscription;
+
+  constructor(private booksService: BooksService, private dialogRef: MatDialog, private autoresService: AutoresServices) { }
 
   ngOnInit(): void {
-    this.autores = this.autoresService.obtenerAutores();
+    //this.autores = this.autoresService.obtenerAutores();
+    this.autoresService.obtenerAutores();
+    this.autorSubscription = this.autoresService.obtenerActualListener()
+      .subscribe((autoresBackend: Autor[]) => {
+        this.autores = autoresBackend;
+      });
+  }
+
+  selected(event: MatSelectChange) {
+    this.selectAutorText = (event.source.selected as MatOption).viewValue;
   }
 
   guardarLibro(f: NgForm) {
@@ -41,7 +53,7 @@ export class AddBookComponent implements OnInit {
 
   }
 
-  selected(event: MatSelectChange) {
-    this.selectAutorText = (event.source.selected as MatOption).viewValue;
+  ngOnDestroy(): void {
+      this.autorSubscription.unsubscribe();
   }
 }

@@ -1,5 +1,9 @@
+import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class LibrosService {
     librosSubject = new Subject();
     private libros = ['Libro Uno', 'Libro 2', 'Libro Tres'];
